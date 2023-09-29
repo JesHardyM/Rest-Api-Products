@@ -38,3 +38,18 @@ export const updateProduct = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+//DELETE - DELETE OF CRUD
+
+export const deleteProduct = async (req, res) => {
+    try {
+        const book = await ProductModel.findByPk(req.params.id);
+        if (!book) {
+            return res.status(500).json({ message: 'Product not found' });
+        }
+        await ProductModel.destroy({where: {id:req.params.id}} );
+        res.status(203).json({ message: 'The product has been deleted successfully!' });
+    } catch (error) {console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+};

@@ -62,8 +62,52 @@ describe('POST /products',() =>{
 //////TESTS FOR UPDATING PRODUCTS
 
 describe('PUT /products', () =>{
-    
+    let createdProduct = {};
+    beforeEach(async () => {
+        createdProduct = await ProductModel.create({ 
+            product_name: "test",
+            brands_id: "test",
+            product_description: "test",
+            category: "test",
+            price: "test",
+        });
+    });
+
+    afterAll(async() =>{
+        await ProductModel.destroy({where:{ id: createdProduct.id}})
+    })
+
+test('should return a response with status 201 and update successfully', async () => {
+    const response = await request(app).put(`/products/${createdProduct.id}`).send({product_name: "updated name"});
+    expect(response.status).toBe(201);
+    expect(response.body.message).toContain("The product has been updated successfully!")
 })
+});
+
+///TEST FOR DELETING PRODUCTS
+
+describe('DELETE /products', () =>{
+    let createdProduct = {};
+    beforeEach(async () => {
+        createdProduct = await ProductModel.create({ 
+            product_name: "test",
+            brands_id: "test",
+            product_description: "test",
+            category: "test",
+            price: "test",
+        });
+    });
+
+    afterAll(async() =>{
+        await ProductModel.destroy({where:{ id: createdProduct.id}})
+    })
+
+test('should return a response with status 203 and update successfully', async () => {
+    const response = await request(app).put(`/products/${createdProduct.id}`).send();
+    expect(response.status).toBe(201);
+    expect(response.body.message).toContain("The product has been deleted successfully!")
+})
+});
 
 //CLOSES SERVER AFTER TESTS
 afterAll(() => {
