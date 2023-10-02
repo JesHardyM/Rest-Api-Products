@@ -1,4 +1,4 @@
-import ProductModel from '../models/bookModel.js';
+import ProductModel from '../models/ProductModel.js';
 
 // GET - REVIEW OF CRUD
 
@@ -43,8 +43,8 @@ export const updateProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
     try {
-        const book = await ProductModel.findByPk(req.params.id);
-        if (!book) {
+        const product = await ProductModel.findByPk(req.params.id);
+        if (!product) {
             return res.status(500).json({ message: 'Product not found' });
         }
         await ProductModel.destroy({where: {id:req.params.id}} );

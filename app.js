@@ -20,6 +20,6 @@ try{
 	}
 
 //👀 importante este paso para poder parar el servidor dentro de los test
-export const server = app.listen(8000,() =>{
-console.log('🚀server up in http://localhost:8000/')
+export const server = app.listen(0,() =>{
+console.log('Listening on port:', server.address().port)
 } )
