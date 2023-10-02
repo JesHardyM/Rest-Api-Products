@@ -1,3 +1,0 @@
-
-
-import {createBrand, getAllBrands, updateBrand, deleteBrand} from "../controllers/brandController.js";
