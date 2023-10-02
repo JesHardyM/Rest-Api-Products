@@ -1,5 +1,5 @@
 import request from "supertest";
-import BrandModel from "../models/brandModel.js";
+import BrandModel from "../models/BrandModel.js";
 import {app, server} from "../app.js";
 import db from "../database/db.js";
 
@@ -21,7 +21,7 @@ describe ("Test CRUD brands", () => {
         const newBrand = {
             brand_name: "test",
             products: "test",
-            category: "test",
+            categories: "test",
         }
         const wrongBrand = {
             wrong_field:'test'
@@ -34,18 +34,18 @@ describe ("Test CRUD brands", () => {
         test('should return a message brand added successfully', async () =>{
             const response = await request(app).post('/brands').send(newBrand)
             expect(response.body.message).toContain("The brand has been added successfully!")
-        })
+        });
         test('should return a message insertion error If post wrong brand ', async () =>{
             const response = await request(app).post('/brands').send(wrongBrand)
             expect(response.status).toBe(500);
             expect(response.body.message).toContain("Field 'brand_name' doesn't have a default value")
-        })
+        });
         afterAll(async() => {
             await BrandModel.destroy({
                 where:{brand_name: "test"}
             })
-        })
-    })
+        });
+    });
 
 ///TEST TO UPDATE - THE U IN CRUD
 
@@ -55,7 +55,7 @@ describe ("Test CRUD brands", () => {
                 createdBrand = await BrandModel.create({ 
                     brand_name: "test",
                     products: "test",
-                    category: "test",
+                    categories: "test",
                 });
             });
 
@@ -78,7 +78,7 @@ describe ("Test CRUD brands", () => {
                 createdBrand = await BrandModel.create({ 
                     brand_name: "test",
                     products: "test",
-                    category: "test",
+                    categories: "test",
                 });
             })
         afterAll(async() =>{
@@ -88,9 +88,7 @@ describe ("Test CRUD brands", () => {
             const response = await request(app).delete(`/brands/${createdBrand.id}`).send();
             expect(response.status).toBe(203);
             expect(response.body.message).toContain("The brand has been deleted successfully!")
-        })
-
-            
+        })      
     });
 
     afterAll(()=> {

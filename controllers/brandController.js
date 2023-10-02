@@ -1,8 +1,6 @@
-import BrandModel from '../models/brandModel.js';
+import BrandModel from '../models/BrandModel.js';
 
-
-//POST - CREATE OF CRUD
-
+    //POST - CREATE OF CRUD
 export const createBrand = async (req, res) => {
     try{
         await BrandModel.create(req.body)
@@ -10,10 +8,10 @@ export const createBrand = async (req, res) => {
     }catch (error){
         res.status(500).json({message: error.messge})
     }
-}
+};
 
-//GET THE R OF CRUD
-export const getAllBrands = async (req, res) => {
+    //GET THE R OF CRUD
+export const getAllBrands = async (_req, res) => {
     try{
         const brands = await BrandModel.findAll()
         res.json(brands)
@@ -21,10 +19,9 @@ export const getAllBrands = async (req, res) => {
         res.status(500).json({
             message: error.messge})
     }
-}
+};
 
-//PUT - UPDATE OF CRUD
-
+    //PUT - UPDATE OF CRUD
 export const updateBrand = async (req, res) => {
     try {
         const brand = await BrandModel.findByPk(req.params.id);
@@ -38,8 +35,7 @@ export const updateBrand = async (req, res) => {
     }
 };
 
-//DELETE - DELETE OF CRUD
-
+    //DELETE - DELETE OF CRUD
 export const deleteBrand = async (req, res) => {
     try {
         const brand = await BrandModel.findByPk(req.params.id);

@@ -22,10 +22,10 @@ describe('POST /products',() =>{
 
     const newProduct = {
         product_name: "test",
-        brands_id: "test",
+        brand_id: 1,
         product_description: "test",
         category: "test",
-        price: "test"
+        price: 10
     }
 
     const wrongProduct = {
@@ -40,7 +40,7 @@ describe('POST /products',() =>{
 
     test('should return a message product created successfully', async () =>{
         const response = await request(app).post('/products').send(newProduct)
-        expect(response.body.message).toContain("The product has been added successfully!")
+        expect(response.body.message).toContain("This product has been added successfully!")
     })
 
     test('should return a message insertion error If post wrong product ', async () =>{
@@ -54,15 +54,6 @@ describe('POST /products',() =>{
             where:{product_name: "test"}
         })
     });
-
-    afterAll(()=> {
-        server.close();
-        db.close()
-    });
-
-})
-
-
 //////TESTS FOR UPDATING PRODUCTS
 
 describe('PUT /products', () =>{
@@ -70,10 +61,10 @@ describe('PUT /products', () =>{
     beforeEach(async () => {
         createdProduct = await ProductModel.create({ 
             product_name: "test",
-            brands_id: "test",
-            product_description: "test",
+            brand_id: "1",
+            product_description: "new product",
             category: "test",
-            price: "test",
+            price: 25,
         });
     });
 
@@ -95,10 +86,10 @@ describe('DELETE /products', () =>{
     beforeEach(async () => {
         createdProduct = await ProductModel.create({ 
             product_name: "test",
-            brand_id: "test",
-            product_description: "test",
+            brand_id: "1",
+            product_description: "new test",
             category: "test",
-            price: "test",
+            price: "10",
         });
     });
 
@@ -112,11 +103,12 @@ test('should return a response with status 203 and update successfully', async (
     expect(response.body.message).toContain("The product has been deleted successfully!")
 })
 });
-//CLOSES SERVER AFTER TESTS
-        afterAll(() => {
-    server.close();
-    db.close()
+
+    afterAll(()=> {
+        server.close();
+        db.close()
     });
 
+});
 
 })

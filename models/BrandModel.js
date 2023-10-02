@@ -5,7 +5,7 @@ import { DataTypes } from 'sequelize';
 const BrandModel = db.define("brands", {
     brand_name:{type:DataTypes.STRING}, 
     products:{type:DataTypes.STRING}, 
-    category:{type:DataTypes.TEXT},
+    categories:{type:DataTypes.STRING},
 },{
     timestamps: false
 })

@@ -1,15 +1,11 @@
 import express from "express";
-import { createBrand } from "../controllers/BrandController.js";
-
+import { getAllBrands , createBrand , updateBrand , deleteBrand } from "../controllers/brandController.js";
 
 const brandRouter = express.Router();
 
-productRouter.get("/", getAllBrands);
+brandRouter.get("/", getAllBrands);
+brandRouter.post("/", createBrand);
+brandRouter.put("/:id", updateBrand);
+brandRouter.delete("/:id", deleteBrand);
 
-productRouter.post("/", createBrand);
-
-productRouter.put("/:id", updateBrand);
-
-productRouter.delete("/:id", deleteBrandt);
-
-export default brandRouter
+export default brandRouter;
