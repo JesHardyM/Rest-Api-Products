@@ -20,10 +20,11 @@ VALUES ("monstera de castillo", "monsteras", "verdes de hoja grande"),
 CREATE TABLE products (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(50) UNIQUE NOT NULL,
-    brand_id INTEGER,
+    brand_id INTEGER NOT NULL,
     product_description VARCHAR(500) NOT NULL,
     category VARCHAR(50),
     price FLOAT NOT NULL,
+    stock FLOAT
     createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -31,13 +32,13 @@ CREATE TABLE products (
 ALTER TABLE `products` ADD FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE CASCADE;
 
 select * from products;
-insert into products(product_name, brand_id, product_description, category, price)
-VALUES ("venus fly trap", 1, "a low growing carnivorous plant native to the coastal carolina area", "carnivorous", 15),
-	("climbing net", 4, "a netted structure to train your pothos or other climbing plant to crisscross walls or create a canopy on the cieling", "climbing structure", 40),
-    ("monstera adasoni", 1, "a climbing full foliage plant", "climbing", 35),
-    ("minature pitcher plant",1,"small carnivorous plants lures and traps insects inside of their pitcher like structures", "carnivorous",10),
-    ("venus fly trap", 3, "native to the coastal carolinas, this low growing fly catcher is an easy keeper preferring sandy soil, medium high humidity, and a few flies","carnivorous", 15);
-    ("australian sundew", 2 , "native to australia, this carnivorous plant goes dormant in summer inorder to survive the harsh australian summers", "carnivorous, rare", 25)
+insert into products(product_name, brand_id, product_description, category, price, stock)
+VALUES ("venus fly trap", 1, "a low growing carnivorous plant native to the coastal carolina area", "carnivorous", 15, 5),
+	("climbing net", 4, "a netted structure to train your pothos or other climbing plant to crisscross walls or create a canopy on the cieling", "climbing structure", 40 , 4),
+    ("monstera adasoni", 1, "a climbing full foliage plant", "climbing", 35, 5 ),
+    ("minature pitcher plant",1,"small carnivorous plants lures and traps insects inside of their pitcher like structures", "carnivorous", 10 , 5),
+    ("venus fly trap", 3, "native to the coastal carolinas, this low growing fly catcher is an easy keeper preferring sandy soil, medium high humidity, and a few flies","carnivorous", 15, 6),
+    ("australian sundew", 2 , "native to australia, this carnivorous plant goes dormant in summer inorder to survive the harsh australian summers", "carnivorous, rare", 25 , 3);
 
 CREATE TABLE admins (
     id int AUTO_INCREMENT PRIMARY KEY,
