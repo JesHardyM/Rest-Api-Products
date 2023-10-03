@@ -4,11 +4,11 @@ import {getAllAdmins} from "../controllers/AdminController.js";
 import {updateAdmin} from "../controllers/AdminController.js";
 import {deleteAdmin}  from "../controllers/AdminController.js";
 
-const AdminRouter = express.Router();
+const adminRouter = express.Router();
 
-AdminRouter.get("/", getAllAdmins);
-AdminRouter.post("/", createAdmin);
-AdminRouter.put("/:id", updateAdmin);
-AdminRouter.delete("/:id", deleteAdmin);
+adminRouter.get("/", getAllAdmins);
+adminRouter.post("/", createAdmin);
+adminRouter.put("/:id", updateAdmin);
+adminRouter.delete("/:id", deleteAdmin);
 
-export default AdminRouter
+export default adminRouter

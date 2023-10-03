@@ -61,7 +61,7 @@ describe('PUT /products', () =>{
     beforeEach(async () => {
         createdProduct = await ProductModel.create({ 
             product_name: "test",
-            brand_id: "1",
+            brand_id: 1,
             product_description: "new product",
             category: "test",
             price: 25,
@@ -86,10 +86,10 @@ describe('DELETE /products', () =>{
     beforeEach(async () => {
         createdProduct = await ProductModel.create({ 
             product_name: "test",
-            brand_id: "1",
+            brand_id: 1,
             product_description: "new test",
             category: "test",
-            price: "10",
+            price: 11,
         });
     });
 
