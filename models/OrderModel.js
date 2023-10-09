@@ -6,7 +6,7 @@ const OrderModel = db.define("orders", {
     products:{type:DataTypes.STRING}, //FK product name
     quantity:{type:DataTypes.INTEGER}, 
     price:{type:DataTypes.FLOAT}, 
-    order_status:{type:DataTypes.INTEGER},
+    order_status:{type:DataTypes.STRING},
 },{
     timestamps: false
 })
