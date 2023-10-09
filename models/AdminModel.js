@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 
 const AdminModel = db.define("admins", {
     user_name:{type:DataTypes.STRING}, 
-    user_email:{type:DataTypes.INTEGER}, 
+    user_email:{type:DataTypes.STRING}, 
     user_password:{type:DataTypes.STRING}, 
 },{
     timestamps: false
